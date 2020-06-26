@@ -1,0 +1,646 @@
+{
+  "info": {
+    "_postman_id": "e8ad44ee-7536-4901-913c-46e718d56d9f",
+    "name": "capstone",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "public",
+      "item": [
+        {
+          "name": "/products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "05cea6f9-9af0-4e60-9aad-4c8faf37ef4c",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"value contains products array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products-detail",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "65a195fa-a734-44b7-a7e0-c629b32d1fbb",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products-detail",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products-detail"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5050a5b9-2e15-474e-9981-0e61ec8d2ff1",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ec1488aa-b4d7-468a-89f5-03484009e69c",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "/products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "05cea6f9-9af0-4e60-9aad-4c8faf37ef4c",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"value contains products array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products-detail",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "65a195fa-a734-44b7-a7e0-c629b32d1fbb",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products-detail",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products-detail"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5050a5b9-2e15-474e-9981-0e61ec8d2ff1",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVkNzVlNmZlNGZiZTAwYmYwYTJmM2VmIiwiYXVkIjoiaW1hZ2UiLCJpYXQiOjE1OTExNzI3ODMsImV4cCI6MTU5MTE3OTk4MywiYXpwIjoiNHRrSkRCRExWTURpZE5MU2djZ1VqWXFsWTJ6UmtCWmIiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDpkcmlua3MtZGV0YWlsIl19.NhKgZH99Ap8rOrQJ8ggm3OhmHEwejPC2fdeMASmO63Fuv5nPnaiJyBBrAGIvQuPRpOSQLUU_U0Qvi5tOWfuGdueV9qt48vndDZS5z7rLexUCIaB7X28RM3ihVFhhHg-oTrtEkrZaovAnl3vdLcWlydY151vcr4UAFeTEC5T0HWNHzCMDw3WUZaSibe8h_qcXPMSCNDDJz6CovcoGZiRofHsj0R3LXQUMLlrcYoo-hxLebPnrmX0j1o0zCgO0HQCSaldDXTZBdQZU-cEH1KP9B8bZnbHliJDyXj_Yqd17kghFLbHVxQf7Fwsp4Coh4MTM5EU36qQt0at6F-_CRDx06w",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ec1488aa-b4d7-468a-89f5-03484009e69c",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmNTEwNjdkNDgzN2QwMDE5NGZlNzBhIiwiYXVkIjoicHJvZHVjdCIsImlhdCI6MTU5MzExOTMxOCwiZXhwIjoxNTkzMjA1NzE4LCJhenAiOiJWcVU3N0dFMUMxcW5pZUJNQ3Z6SjNueGV4QTlMNFBMRCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OnByb2R1Y3QtZGV0YWlsIl19.ZPllOdz-_mvM7l1f3AmRoX1G5GGi8SaT3Th9-1IZSRmENE3eDIfzNO-xPhQ9Hm1YW1q3EV2jffi0fSol5gX9ScoBtcMOJGBncpLAQ8-eyoXu93dTG-6-tKHIXgXRlvEZN5Orj7I-nf-LGENhJ2ummsnPjKboS4ZymA5TK-gh9zNGsYuzNFZUn2wcIhg6ujPN0mgf-OWnpZIfiZ1M6xQcmOc2tvNobmQEELZdEjEzSRMLlbzRFMiFuuV4ldt9SZKCVvAAWJFe3aIaSFOIpNWCDnluWXQYxa5zL7BnbZrGvNegCnCIIqxx75-gdMMwwO9ZjUkjzchdcSUmM9V_8J2SiA",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "f985b22c-34c4-4cfe-8308-f6fb98d799ac",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "596425ac-59b4-4488-9f07-4c748e1ad082",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "/products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "05cea6f9-9af0-4e60-9aad-4c8faf37ef4c",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"value contains products array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products-detail",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "65a195fa-a734-44b7-a7e0-c629b32d1fbb",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"value contains products array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products-detail",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products-detail"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products?name=EBO",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5050a5b9-2e15-474e-9981-0e61ec8d2ff1",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"CoolEvo\", \"price\": \"$150k\", \"description\": \"Beautiful\", \"imageUrl\": \"https://cool.com\"}"
+            },
+            "url": {
+              "raw": "{{host}}/products?name=EBO",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products?name=EBO"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ec1488aa-b4d7-468a-89f5-03484009e69c",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"value contains products array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"\", \"price\": \"$250k\", \"description\": \"\", \"imageUrl\": \"https://coolwow.com\"}"
+            },
+            "url": {
+              "raw": "{{host}}/products/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2MzYzUwMDE5ZDBiYzg5IiwiYXVkIjoicHJvZHVjdCIsImlhdCI6MTU5MzExODk0MSwiZXhwIjoxNTkzMjA1MzQxLCJhenAiOiJWcVU3N0dFMUMxcW5pZUJNQ3Z6SjNueGV4QTlMNFBMRCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnByb2R1Y3QiLCJnZXQ6cHJvZHVjdC1kZXRhaWwiLCJwYXRjaDpwcm9kdWN0IiwicG9zdDpwcm9kdWN0Il19.bsaRXa9Q_BgcIv4aim-HGZfHQQPrBBCuvGrE8QpatHOzljWJV20ruSq2rdQSYztHkDn2y5LO-OWATMAtOxrskq7PvMcUGneJqr5lwgB9GywHpvlmdPfiPS9WL3kaSRvYzZnb100vyjXv9lJHYyy2dxjjFh6nkkQKByDhTG0ORAZf-CVA2z-MSQIS3QKsD1ILjmdLhoSjY2lGeIUD1S4dtlAf_Y3DgxPKKIXP1ReuzBJywfEiM1Ne9yTs0B9-l7VA5t-zCJXCaTzfEl6DuEBVLt2WIOWLAfOTgwTxwVDtWQr3PJ-Zmecb9OaoN6NXS8fAMSTP14GMXOyzvRn0U4wWuQ",
+            "type": "string"
+          }
+        ]
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "113ee6fe-418d-4bf4-a641-444b5816e46b",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "5704da6d-dc7e-42b9-8214-aa7ecf075bca",
+            "type": "text/javascript",
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "fc871e59-eaa4-46e8-975b-87b750ad1804",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "e5766f23-c7f1-472b-ae34-825a91147815",
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "7da0fa13-ecd9-4d7d-8e38-fde2c81cfdaf",
+      "key": "host",
+      "value": "localhost:4000/api",
+      "type": "string"
+    }
+  ]
+}

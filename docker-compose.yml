@@ -14,15 +14,15 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./frontend/:/data/app/
-      - /data/app/node_modules
+      - ./frontend:/data/app
+      - /data/node_modules
     restart: unless-stopped
   nginx:
     build:
       context: ./nginx
       dockerfile: Dockerfile
     ports:
-      - "4000:80"
+      - "8080:80"
     depends_on:
       - api
       - client

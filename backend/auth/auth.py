@@ -1,12 +1,12 @@
 import json
-from flask import request, _request_ctx_stack
+from flask import request
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
 
-AUTH0_DOMAIN = 'coffe-sho.auth0.com'
-ALGORITHMS = ['RS256']
-API_AUDIENCE = 'product'
+AUTH0_DOMAIN = "${AUTH0_DOMAIN}"
+ALGORITHMS = "${ALGORITHMS}"
+API_AUDIENCE = "${API_AUDIENCE}"
 
 # https://coffe-sho.auth0.com/authorize?audience=product&response_type=token&client_id=VqU77GE1C1qnieBMCvzJ3nxexA9L4PLD&redirect_uri=http://localhost:8080/login
 

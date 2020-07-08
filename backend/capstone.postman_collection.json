@@ -23,6 +23,11 @@
                   "pm.test(\"value contains products array\", function () {",
                   "    var jsonData = pm.response.json();",
                   "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});",
+                  "",
+                  "pm.test(\"value contains announcements array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.announcements).to.be.an('array')",
                   "});"
                 ],
                 "type": "text/javascript"
@@ -45,7 +50,7 @@
           "response": []
         },
         {
-          "name": "/products-detail",
+          "name": "/products/1",
           "event": [
             {
               "listen": "test",
@@ -64,19 +69,52 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{host}}/products-detail",
+              "raw": "{{host}}/products/1",
               "host": [
                 "{{host}}"
               ],
               "path": [
-                "products-detail"
+                "products",
+                "1"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "/products",
+          "name": "/products/my-products",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "65a195fa-a734-44b7-a7e0-c629b32d1fbb",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products/my-products",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "my-products"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products?name=public",
           "event": [
             {
               "listen": "test",
@@ -95,12 +133,12 @@
             "method": "POST",
             "header": [],
             "url": {
-              "raw": "{{host}}/products",
+              "raw": "{{host}}/products?name=public",
               "host": [
                 "{{host}}"
               ],
               "path": [
-                "products"
+                "products?name=public"
               ]
             }
           },
@@ -164,6 +202,133 @@
               ],
               "path": [
                 "products",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
                 "1"
               ]
             }
@@ -190,6 +355,11 @@
                   "pm.test(\"value contains products array\", function () {",
                   "    var jsonData = pm.response.json();",
                   "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});",
+                  "",
+                  "pm.test(\"value contains announcements array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.announcements).to.be.an('array')",
                   "});"
                 ],
                 "type": "text/javascript"
@@ -212,7 +382,7 @@
           "response": []
         },
         {
-          "name": "/products-detail",
+          "name": "/products/1",
           "event": [
             {
               "listen": "test",
@@ -231,78 +401,6 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{host}}/products-detail",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "products-detail"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "/products",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "5050a5b9-2e15-474e-9981-0e61ec8d2ff1",
-                "exec": [
-                  "pm.test(\"Status code is 401\", function () {",
-                  "    pm.response.to.have.status(401);",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVkNzVlNmZlNGZiZTAwYmYwYTJmM2VmIiwiYXVkIjoiaW1hZ2UiLCJpYXQiOjE1OTExNzI3ODMsImV4cCI6MTU5MTE3OTk4MywiYXpwIjoiNHRrSkRCRExWTURpZE5MU2djZ1VqWXFsWTJ6UmtCWmIiLCJzY29wZSI6IiIsInBlcm1pc3Npb25zIjpbImdldDpkcmlua3MtZGV0YWlsIl19.NhKgZH99Ap8rOrQJ8ggm3OhmHEwejPC2fdeMASmO63Fuv5nPnaiJyBBrAGIvQuPRpOSQLUU_U0Qvi5tOWfuGdueV9qt48vndDZS5z7rLexUCIaB7X28RM3ihVFhhHg-oTrtEkrZaovAnl3vdLcWlydY151vcr4UAFeTEC5T0HWNHzCMDw3WUZaSibe8h_qcXPMSCNDDJz6CovcoGZiRofHsj0R3LXQUMLlrcYoo-hxLebPnrmX0j1o0zCgO0HQCSaldDXTZBdQZU-cEH1KP9B8bZnbHliJDyXj_Yqd17kghFLbHVxQf7Fwsp4Coh4MTM5EU36qQt0at6F-_CRDx06w",
-                  "type": "string"
-                }
-              ]
-            },
-            "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{host}}/products",
-              "host": [
-                "{{host}}"
-              ],
-              "path": [
-                "products"
-              ]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "/products/1",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "id": "ec1488aa-b4d7-468a-89f5-03484009e69c",
-                "exec": [
-                  "pm.test(\"Status code is 401\", function () {",
-                  "    pm.response.to.have.status(401);",
-                  "});"
-                ],
-                "type": "text/javascript"
-              }
-            }
-          ],
-          "request": {
-            "method": "PATCH",
-            "header": [],
-            "url": {
               "raw": "{{host}}/products/1",
               "host": [
                 "{{host}}"
@@ -316,7 +414,224 @@
           "response": []
         },
         {
-          "name": "/products/1",
+          "name": "/products?name=EBO",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5050a5b9-2e15-474e-9981-0e61ec8d2ff1",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"CoolEvo\", \"price\": \"$150k\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
+            },
+            "url": {
+              "raw": "{{host}}/products?name=EBO",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products?name=EBO"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "ec1488aa-b4d7-468a-89f5-03484009e69c",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"value contains products array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\": \"\", \"price\": \"$250k\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
+            },
+            "url": {
+              "raw": "{{host}}/products/2",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/products/2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/products/2",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "products",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/1",
           "event": [
             {
               "listen": "test",
@@ -335,12 +650,12 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{host}}/products/1",
+              "raw": "{{host}}/announcement/1",
               "host": [
                 "{{host}}"
               ],
               "path": [
-                "products",
+                "announcement",
                 "1"
               ]
             }
@@ -353,7 +668,7 @@
         "bearer": [
           {
             "key": "token",
-            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmNTEwNjdkNDgzN2QwMDE5NGZlNzBhIiwiYXVkIjoicHJvZHVjdCIsImlhdCI6MTU5MzExOTMxOCwiZXhwIjoxNTkzMjA1NzE4LCJhenAiOiJWcVU3N0dFMUMxcW5pZUJNQ3Z6SjNueGV4QTlMNFBMRCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OnByb2R1Y3QtZGV0YWlsIl19.ZPllOdz-_mvM7l1f3AmRoX1G5GGi8SaT3Th9-1IZSRmENE3eDIfzNO-xPhQ9Hm1YW1q3EV2jffi0fSol5gX9ScoBtcMOJGBncpLAQ8-eyoXu93dTG-6-tKHIXgXRlvEZN5Orj7I-nf-LGENhJ2ummsnPjKboS4ZymA5TK-gh9zNGsYuzNFZUn2wcIhg6ujPN0mgf-OWnpZIfiZ1M6xQcmOc2tvNobmQEELZdEjEzSRMLlbzRFMiFuuV4ldt9SZKCVvAAWJFe3aIaSFOIpNWCDnluWXQYxa5zL7BnbZrGvNegCnCIIqxx75-gdMMwwO9ZjUkjzchdcSUmM9V_8J2SiA",
+            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmNTEwNjdkNDgzN2QwMDE5NGZlNzBhIiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk0MTkyMDMyLCJleHAiOjE1OTQyNzg0MzIsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpwcm9kdWN0IiwiZ2V0Om15LXByb2R1Y3QiLCJnZXQ6c3BlY2lmaWMtcHJvZHVjdCIsInBhdGNoOnByb2R1Y3QiLCJwb3N0OnByb2R1Y3QiXX0.Gyq0qh70ZqfAaA7mUFZnoXn5JHULQETt0m65NUoGHCOEd2btXjdm3Jye2EEehrp1Sn4Pd1rxSU3jvlVUQxwZnIOV8KXpnImT-CNoSdlLFZXagqHSkhOtmiN4Gb3uPXbLoAV5HtTGWtndjDfrTV5E-X8drE5bRtnz021ivFe3o9kL44w_rFBJr1KBIfj0DWLdznP4jPyaEucS07qqetMxkVN0sFA7QLmq7CNuQOzqW_Vv58RBw119HmuZBPe0uq9NPZ2i9HRCvzfdqX0CYch9y-23CXG9NcaivBExjS2Z9MDsozEnj5XcB9oLRXb2SfnaxzOZ3I9akyutIlaD04C2Qw",
             "type": "string"
           }
         ]
@@ -399,6 +714,11 @@
                   "pm.test(\"value contains products array\", function () {",
                   "    var jsonData = pm.response.json();",
                   "    pm.expect(jsonData.products).to.be.an('array')",
+                  "});",
+                  "",
+                  "pm.test(\"value contains announcements array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.announcements).to.be.an('array')",
                   "});"
                 ],
                 "type": "text/javascript"
@@ -421,7 +741,7 @@
           "response": []
         },
         {
-          "name": "/products-detail",
+          "name": "/products/1",
           "event": [
             {
               "listen": "test",
@@ -430,11 +750,6 @@
                 "exec": [
                   "pm.test(\"Status code is 200\", function () {",
                   "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test(\"value contains products array\", function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.products).to.be.an('array')",
                   "});"
                 ],
                 "type": "text/javascript"
@@ -445,19 +760,20 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{host}}/products-detail",
+              "raw": "{{host}}/products/1",
               "host": [
                 "{{host}}"
               ],
               "path": [
-                "products-detail"
+                "products",
+                "1"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "/products?name=EBO",
+          "name": "/products?name=EVO",
           "event": [
             {
               "listen": "test",
@@ -484,7 +800,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"CoolEvo\", \"price\": \"$150k\", \"description\": \"Beautiful\", \"imageUrl\": \"https://cool.com\"}"
+              "raw": "{\"title\": \"Cool Car\", \"price\": \"$150k\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
             },
             "url": {
               "raw": "{{host}}/products?name=EBO",
@@ -499,7 +815,7 @@
           "response": []
         },
         {
-          "name": "/products/1",
+          "name": "/products/2",
           "event": [
             {
               "listen": "test",
@@ -531,23 +847,23 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"\", \"price\": \"$250k\", \"description\": \"\", \"imageUrl\": \"https://coolwow.com\"}"
+              "raw": "{\"title\": \"\", \"price\": \"$250k\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
             },
             "url": {
-              "raw": "{{host}}/products/1",
+              "raw": "{{host}}/products/2",
               "host": [
                 "{{host}}"
               ],
               "path": [
                 "products",
-                "1"
+                "2"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "/products/1",
+          "name": "/products/2",
           "event": [
             {
               "listen": "test",
@@ -566,13 +882,167 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{host}}/products/1",
+              "raw": "{{host}}/products/2",
               "host": [
                 "{{host}}"
               ],
               "path": [
                 "products",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/1",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement/1",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
                 "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"announcement\":\"Discount 1%\"}"
+            },
+            "url": {
+              "raw": "{{host}}/announcement",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"value contains announcements array\", function () {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.expect(jsonData.announcements).to.be.an('array')",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "name": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\"announcement\":\"Discount 70%\"}"
+            },
+            "url": {
+              "raw": "{{host}}/announcement/2",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
+                "2"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/announcement/2",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "0aea66ad-0a6e-4533-b192-a8b0af746c78",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{host}}/announcement/2",
+              "host": [
+                "{{host}}"
+              ],
+              "path": [
+                "announcement",
+                "2"
               ]
             }
           },
@@ -584,7 +1054,7 @@
         "bearer": [
           {
             "key": "token",
-            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2MzYzUwMDE5ZDBiYzg5IiwiYXVkIjoicHJvZHVjdCIsImlhdCI6MTU5MzExODk0MSwiZXhwIjoxNTkzMjA1MzQxLCJhenAiOiJWcVU3N0dFMUMxcW5pZUJNQ3Z6SjNueGV4QTlMNFBMRCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnByb2R1Y3QiLCJnZXQ6cHJvZHVjdC1kZXRhaWwiLCJwYXRjaDpwcm9kdWN0IiwicG9zdDpwcm9kdWN0Il19.bsaRXa9Q_BgcIv4aim-HGZfHQQPrBBCuvGrE8QpatHOzljWJV20ruSq2rdQSYztHkDn2y5LO-OWATMAtOxrskq7PvMcUGneJqr5lwgB9GywHpvlmdPfiPS9WL3kaSRvYzZnb100vyjXv9lJHYyy2dxjjFh6nkkQKByDhTG0ORAZf-CVA2z-MSQIS3QKsD1ILjmdLhoSjY2lGeIUD1S4dtlAf_Y3DgxPKKIXP1ReuzBJywfEiM1Ne9yTs0B9-l7VA5t-zCJXCaTzfEl6DuEBVLt2WIOWLAfOTgwTxwVDtWQr3PJ-Zmecb9OaoN6NXS8fAMSTP14GMXOyzvRn0U4wWuQ",
+            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2MzYzUwMDE5ZDBiYzg5IiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk0MjAxNDE2LCJleHAiOjE1OTQyODc4MTYsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphbm5vdW5jZW1lbnQiLCJkZWxldGU6cHJvZHVjdCIsImdldDpteS1wcm9kdWN0IiwiZ2V0OnNwZWNpZmljLWFubm91bmNlbWVudCIsImdldDpzcGVjaWZpYy1wcm9kdWN0IiwicGF0Y2g6YW5ub3VuY2VtZW50IiwicGF0Y2g6cHJvZHVjdCIsInBvc3Q6YW5ub3VuY2VtZW50IiwicG9zdDpwcm9kdWN0Il19.iVUwjbHAinKXuiV4X8fGDS_K01rP4epMAA1nMo1oqn6ZJUK9E2MVURk6YG6r2A-2Ve8ha3egaf6SfwuKmme1e0Mtwwch2q3ptMY13kitpAaS60bT2lmFmy_FmbSAAimVcOLBgDPA9ng6JCJ2_szEITWLPR09Y4innwzoHieLjKy8d_4y3aJ3RHu5aHMIpxMMsuRFcrQ3ObgKWzIlMUbPIMd_8MRfCgynKgmpm_A6CQxZ8uIdf8mFwIXJ64ewvNjAWOw_XroRnNKYMvVdKsxSeZux2RWBrQ0iks-By8hcFsmM3AbZwOluolocKipesqz2SWv87SMocCBIvbjUfly4vw",
             "type": "string"
           }
         ]
@@ -639,7 +1109,7 @@
     {
       "id": "7da0fa13-ecd9-4d7d-8e38-fde2c81cfdaf",
       "key": "host",
-      "value": "localhost:4000/api",
+      "value": "localhost:8080/api",
       "type": "string"
     }
   ]

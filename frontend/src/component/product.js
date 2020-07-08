@@ -5,7 +5,7 @@ import "../assets/style.css"
 import CreateProduct from "./create_product";
 import EditProduct from "./edit_product";
 import SpecificProduct from "./get_specific_product";
-
+import Loading from "./Loading";
 
 const Product = (props) => {
     const {user, isAuthenticated} = useAuth0()
@@ -18,9 +18,11 @@ const Product = (props) => {
     const [ownerUser, setOwnerUser] = useState()
     const [btn, setBtn] = useState(true)
     const [previewSource, setPreviewSource] = useState()
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         if (props.match.path !== '/create') {
+            setLoading(true)
             axios.get('http://localhost:8080/api/products/' + props.match.params.id, {
                 headers: {
                     Authorization: `Bearer ${window.localStorage.getItem("access_token")}`,
@@ -33,6 +35,7 @@ const Product = (props) => {
                 setDate(res.data.product.created.substring(0, 26))
                 setOwnerUser(res.data.product.owner)
                 setMobile(res.data.product.mobile)
+                setLoading(false)
             }).catch(err => console.log(err))
         }
     }, [props.match.params.id, props.match.path])
@@ -64,14 +67,13 @@ const Product = (props) => {
         setBtn(false)
 
     }
-
-
     const OnChangeMobile = (event) => {
         setMobile(event.target.value)
         setBtn(false)
     }
     const OnSubmit = (event) => {
         event.preventDefault()
+        setLoading(true)
         const product = {
             title: title,
             description: description,
@@ -91,6 +93,7 @@ const Product = (props) => {
     }
     const OnUpdate = (event) => {
         event.preventDefault()
+        setLoading(true)
         const product = {
             title: title,
             description: description,
@@ -106,13 +109,16 @@ const Product = (props) => {
         window.location = '/'
     }
     const deleteProduct = (id) => {
+        setLoading(true)
         axios.delete("http://localhost:8080/api/products/" + id, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("access_token")}`,
             },
-        }).then(r => console.log(r)).catch(err => console.log(err.response.data))
+        }).then(r => {
+            console.log(r);
+            setLoading(false)
+        }).catch(err => console.log(err.response.data))
     }
-
     const previewFile = (file) => {
         const reader = new FileReader()
         reader.readAsDataURL(file)
@@ -150,7 +156,7 @@ const Product = (props) => {
 
     return (
         <div className="container">
-            {create_update_product()}
+            {loading ? <Loading/> : create_update_product()}
         </div>
     )
 }

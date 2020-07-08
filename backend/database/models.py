@@ -39,6 +39,11 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    # this method is for testing end point only
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
 
 class Product(db.Model):
     id = Column(Integer(), primary_key=True)
@@ -110,6 +115,7 @@ class Announcement(db.Model):
 
     def format(self):
         return {
+            'id': self.id,
             'announcement': self.announcement
         }
 

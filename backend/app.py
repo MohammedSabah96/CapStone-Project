@@ -3,11 +3,14 @@ from flask_cors import CORS
 from database.models import setup_db, Product, User, Announcement
 from auth.auth import requires_auth, AuthError
 from cloudinary import uploader, config, api
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 config(
-    cloud_name="devstore-capstone",
-    api_key="474371828699186",
-    api_secret="84V9Z0mM5zTNZt14fxMykFz3PUA"
+    cloud_name=os.getenv('CLOUD_NAME'),
+    api_key=os.getenv('API_KEY'),
+    api_secret=os.getenv('API_SECRET')
 )
 
 
@@ -22,7 +25,7 @@ def create_app(test_config=None):
         response.headers.add('Access-Control-Allow-Headers',
                              'Content-Type,Authorization,true')
         response.headers.add('Access-Control-Allow-Methods',
-                             'GET,PUT,POST,DELETE,OPTIONS')
+                             'GET,PATCH,POST,DELETE,OPTIONS')
         return response
 
     @app.route("/products", methods=['GET'])
@@ -76,6 +79,7 @@ def create_app(test_config=None):
             abort(400)
         if 'imageUrl' in data:
             upload_image = uploader.upload(data['imageUrl'])
+
         check_user = User.query.filter_by(name=username).one_or_none()
         if check_user is None:
             new_user = User(name=username)
@@ -152,11 +156,22 @@ def create_app(test_config=None):
             'deleted': product_id
         })
 
+    @app.route('/announcement/<int:ad_id>', methods=['GET'])
+    @requires_auth("get:specific-announcement")
+    def get_specific_announcement(payload, ad_id):
+        get_specific_announce = Announcement.query.get(ad_id)
+        if get_specific_announce is None:
+            abort(404)
+        return jsonify({
+            'success': True,
+            'announcement': get_specific_announce.format()
+        })
+
     @app.route('/announcement', methods=['POST'])
     @requires_auth("post:announcement")
     def add_announcement(payload):
         new_announcement = request.get_json()
-        if new_announcement['announcement'] is "":
+        if new_announcement['announcement'] == "":
             abort(400)
         announcement = Announcement(announcement=new_announcement['announcement'])
         announcement.insert()
@@ -177,10 +192,12 @@ def create_app(test_config=None):
         old_announcement.announcement = get_new_announcement['announcement'] if get_new_announcement[
             'announcement'] else old_announcement.announcement
         old_announcement.update()
-
+        get_all_announcement = Announcement.query.all()
+        announcements = [announcement.format() for announcement in get_all_announcement]
         return jsonify({
             'success': True,
-            'updated': ad_id
+            'updated': ad_id,
+            'announcements': announcements
         })
 
     @app.route('/announcement/<int:ad_id>', methods=['DELETE'])

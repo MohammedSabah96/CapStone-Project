@@ -7,6 +7,7 @@ import Product from "./component/product";
 import Profile from "./auth/profile";
 import {useAuth0} from "@auth0/auth0-react";
 import Loading from "./component/Loading";
+import Announcement from "./component/announcement";
 
 function App() {
     const {isLoading, error} = useAuth0();
@@ -24,6 +25,7 @@ function App() {
                 <Switch>
                     <Route path="/" exact component={Products}/>
                     <Route path="/edit/:id" component={Product}/>
+                    <Route path="/announcement/edit/:id" component={Announcement}/>
                     <Route path="/products/:id" component={Product}/>
                     <Route path="/create" component={Product}/>
                     <Route path="/profile" component={Profile}/>

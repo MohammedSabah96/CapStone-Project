@@ -3,10 +3,13 @@ from flask import request
 from functools import wraps
 from jose import jwt
 from urllib.request import urlopen
+from dotenv import load_dotenv
+import os
 
-AUTH0_DOMAIN = "${AUTH0_DOMAIN}"
-ALGORITHMS = "${ALGORITHMS}"
-API_AUDIENCE = "${API_AUDIENCE}"
+load_dotenv()
+AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
+ALGORITHMS = os.environ.get('ALGORITHMS')
+API_AUDIENCE = os.environ.get('API_AUDIENCE')
 
 # https://coffe-sho.auth0.com/authorize?audience=product&response_type=token&client_id=VqU77GE1C1qnieBMCvzJ3nxexA9L4PLD&redirect_uri=http://localhost:8080/login
 

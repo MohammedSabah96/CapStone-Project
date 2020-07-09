@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import Loading from "./Loading";
+import Message from "./message";
 
 const Announcement = (props) => {
     const [announcement, setAnnouncement] = useState()
+    const [message, setMessage] = useState("")
     const [loading, setLoading] = useState(false)
     useEffect(() => {
         if (props.path !== "/profile") {
@@ -33,8 +35,16 @@ const Announcement = (props) => {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("access_token")}`,
             },
-        }).then(res => console.log(res)).catch(err => {
-                console.log(err.response.data)
+        }).then(res => {
+            if (res.status === 200) {
+                setMessage("The Announcement was Created Successfully")
+            }
+        }).catch(err => {
+                if (err.response.status === 400) {
+                    setMessage("Add Some Announcment First!!!")
+                } else {
+                    setMessage("something went wrong with the server")
+                }
             }
         )
         const ad = document.getElementById('ad')
@@ -51,8 +61,16 @@ const Announcement = (props) => {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("access_token")}`,
             },
-        }).then(res => window.location = '/').catch(err => {
-                console.log(err.response.data)
+        }).then(res => {
+            if (res.status === 200) {
+                setMessage("The Announcement was Updated Successfully")
+            }
+        }).catch(err => {
+                if (err.response.status === 404) {
+                    setMessage("The Announcment does not exists!!!")
+                } else {
+                    setMessage("something went wrong with the server")
+                }
             }
         )
     }
@@ -85,6 +103,7 @@ const Announcement = (props) => {
 
     return (
         <div className="container">
+            {message ? <Message msg={message}/> : null}
             {loading ? <Loading/> : create_update_announcement()}
         </div>
     )

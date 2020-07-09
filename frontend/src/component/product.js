@@ -6,6 +6,9 @@ import CreateProduct from "./create_product";
 import EditProduct from "./edit_product";
 import SpecificProduct from "./get_specific_product";
 import Loading from "./Loading";
+import {CircularProgressbar} from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+
 
 const Product = (props) => {
     const {user, isAuthenticated} = useAuth0()
@@ -19,6 +22,14 @@ const Product = (props) => {
     const [btn, setBtn] = useState(true)
     const [previewSource, setPreviewSource] = useState()
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState("")
+    const [fileName, setFileName] = useState("Choose an Image")
+    const [uploadPercentageImage, setUploadPercentageImage] = useState(0)
+    const [uploadPercentageSubmit, setUploadPercentageSubmit] = useState(0)
+    const [imageUrl, setImageUrl] = useState("")
+    const [imageId, setImageId] = useState("")
+    const [deleteImage, setDeleteImage] = useState("")
+    const [isSubmit, setIsSubmit] = useState(false)
 
     useEffect(() => {
         if (props.match.path !== '/create') {
@@ -32,6 +43,7 @@ const Product = (props) => {
                 setDescription(res.data.product.description)
                 setPrice(res.data.product.price)
                 setImage(res.data.product.imageUrl)
+                setFileName(res.data.product.imageName)
                 setDate(res.data.product.created.substring(0, 26))
                 setOwnerUser(res.data.product.owner)
                 setMobile(res.data.product.mobile)
@@ -53,16 +65,43 @@ const Product = (props) => {
         setBtn(false)
     }
     const OnChangeImage = (event) => {
+        if (deleteImage) {
+            axios.post(`https://api.cloudinary.com/v1_1/devstore-capstone/delete_by_token`, {token: deleteImage}, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(res => console.log(res))
+                .catch(err => console.log(err.response))
+        }
         const file = event.target.files[0]
+        setFileName(file.name)
         const fsize = file.size;
         const file_size = Math.round((fsize / 1024));
         // The size of the file.
-        if (file_size >= 500) {
+        if (file_size >= 1000) {
             alert(
-                "File too Big, please select a file less than 0.5mb");
+                "File too Big, please select a file less than 1mb");
+            setFileName("")
+            setPreviewSource("")
             setBtn(true)
         } else {
+            document.getElementById("bar").style.visibility = "visible";
             previewFile(file)
+            const formData = new FormData()
+            formData.append('file', file)
+            formData.append('upload_preset', 'devstore-capstone')
+            axios.post("https://api.cloudinary.com/v1_1/devstore-capstone/image/upload", formData, {
+                onUploadProgress: progressEvent => {
+                    setUploadPercentageImage(parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total)))
+                    setTimeout(() => setUploadPercentageImage(0), 10000)
+                }
+            }).then(res => {
+                console.log(res)
+                setDeleteImage(res.data.delete_token)
+                setImageUrl(res.data.secure_url)
+                setImageId(res.data.public_id)
+            }).catch(res => console.log(res.response))
         }
         setBtn(false)
 
@@ -72,52 +111,93 @@ const Product = (props) => {
         setBtn(false)
     }
     const OnSubmit = (event) => {
+        setIsSubmit(true)
         event.preventDefault()
-        setLoading(true)
         const product = {
             title: title,
             description: description,
             price: price,
-            imageUrl: previewSource,
+            imageUrl: imageUrl,
+            imageId: imageId,
+            imageName: fileName,
             mobile: mobile
         }
         axios.post("http://localhost:8080/api/products?name=" + user.nickname, product, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("access_token")}`,
             },
-        }).then(_ => window.location = '/').catch(err => {
-                console.log(err.response.data)
+            onUploadProgress: progressEvent => {
+                setUploadPercentageSubmit(parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total)))
+                setTimeout(() => setUploadPercentageSubmit(0), 10000)
+            }
+        }).then(res => {
+            if (res.status === 200) {
+                setMessage("The Product was Created Successfully")
+                setIsSubmit(false)
+            }
+        }).catch(err => {
+                setIsSubmit(false)
+                if (err.response.status === 422) {
+                    setMessage("please You need to have a unique title product")
+                } else {
+                    setMessage("something went wrong with the server")
+                }
             }
         )
 
     }
     const OnUpdate = (event) => {
+        setIsSubmit(true)
         event.preventDefault()
-        setLoading(true)
         const product = {
             title: title,
             description: description,
             price: price,
-            imageUrl: previewSource,
+            imageUrl: imageUrl,
+            imageId: imageId,
+            imageName: fileName,
             mobile: mobile
         }
         axios.patch("http://localhost:8080/api/products/" + props.match.params.id, product, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("access_token")}`,
             },
-        }).then(_ => setBtn(true)).catch(err => console.log(err.response.data))
-        window.location = '/'
+            onUploadProgress: progressEvent => {
+                setUploadPercentageSubmit(parseInt(Math.round((progressEvent.loaded * 100) / progressEvent.total)))
+                setTimeout(() => setUploadPercentageSubmit(0), 10000)
+            }
+        }).then(res => {
+                if (res.status === 200) {
+                    setMessage("The Product was Updated Successfully")
+                    setIsSubmit(false)
+                }
+            }
+        ).catch(err => {
+            setIsSubmit(false)
+            if (err.response.status === 404) {
+                setMessage("The Product does not exists")
+            } else {
+                setMessage("something went wrong with the server")
+            }
+        })
     }
     const deleteProduct = (id) => {
-        setLoading(true)
         axios.delete("http://localhost:8080/api/products/" + id, {
             headers: {
                 Authorization: `Bearer ${window.localStorage.getItem("access_token")}`,
             },
-        }).then(r => {
-            console.log(r);
+        }).then(res => {
+            if (res.status === 200) {
+                setMessage("The Product was Deleted Successfully")
+            }
             setLoading(false)
-        }).catch(err => console.log(err.response.data))
+        }).catch(err => {
+            if (err.response.status === 404) {
+                setMessage("The Product does not exists")
+            } else {
+                setMessage("something went wrong with the server")
+            }
+        })
     }
     const previewFile = (file) => {
         const reader = new FileReader()
@@ -135,7 +215,9 @@ const Product = (props) => {
                              OnChangeMobile={OnChangeMobile}
                              OnUpdate={OnUpdate} title={title} description={description} price={price}
                              image={image} date={date} mobile={mobile} ownerUser={ownerUser} btn={btn}
-                             previewSource={previewSource}/>
+                             previewSource={previewSource} fileName={fileName}
+                             uploadPercentageImage={uploadPercentageImage}
+                             message={message} isSubmit={isSubmit} uploadPercentageSubmit={uploadPercentageSubmit}/>
             )
         } else if (props.match.path === '/products/:id') {
             return (
@@ -148,7 +230,9 @@ const Product = (props) => {
                 <CreateProduct isAuthenticated={isAuthenticated} OnChangeTitle={OnChangeTitle}
                                OnChangeDescription={OnChangeDescription} OnChangePrice={OnChangePrice}
                                OnChangeImage={OnChangeImage} OnChangeMobile={OnChangeMobile} OnSubmit={OnSubmit}
-                               previewSource={previewSource}/>
+                               previewSource={previewSource} fileName={fileName}
+                               uploadPercentageImage={uploadPercentageImage}
+                               message={message} isSubmit={isSubmit} uploadPercentageSubmit={uploadPercentageSubmit}/>
             )
         }
     }

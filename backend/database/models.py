@@ -57,17 +57,19 @@ class Product(db.Model):
     price = Column(String(20), nullable=False)
     imageUrl = Column(String(250))
     public_id_image = Column(String(), nullable=False)
+    imageName = Column(String())
     created = Column(DateTime(), nullable=False, default=datetime.utcnow, onupdate=datetime.now)
     owner = Column(String())
     mobile = Column(BIGINT())
     user_id = Column(Integer(), db.ForeignKey('user.id'))
 
-    def __init__(self, title, description, price, imageUrl, public_id_image, owner, mobile, user):
+    def __init__(self, title, description, price, imageUrl, public_id_image, imageName, owner, mobile, user):
         self.title = title
         self.description = description
         self.price = price
         self.imageUrl = imageUrl
         self.public_id_image = public_id_image
+        self.imageName = imageName
         self.mobile = mobile
         self.created = datetime.utcnow()
         self.owner = owner
@@ -92,6 +94,7 @@ class Product(db.Model):
             'price': self.price,
             'imageUrl': self.imageUrl,
             'public_id': self.public_id_image,
+            'imageName': self.imageName,
             'created': self.created,
             'mobile': self.mobile,
             'owner': self.owner,

@@ -77,8 +77,6 @@ def create_app(test_config=None):
         username = request.args.get('name')
         if username is None:
             abort(400)
-        if 'imageUrl' in data:
-            upload_image = uploader.upload(data['imageUrl'])
 
         check_user = User.query.filter_by(name=username).one_or_none()
         if check_user is None:
@@ -92,8 +90,9 @@ def create_app(test_config=None):
             abort(422)
         new_product = Product(title=data['title'], price=data['price'] + "$",
                               description=data['description'],
-                              imageUrl=upload_image['url'],
-                              public_id_image=upload_image['public_id'],
+                              imageUrl=data['imageUrl'],
+                              public_id_image=data['imageId'],
+                              imageName=data['imageName'],
                               owner=username,
                               mobile=data['mobile'],
                               user=user_name)
@@ -114,21 +113,16 @@ def create_app(test_config=None):
         if not get_product:
             abort(404)
         data = request.get_json()
-
-        if 'imageUrl' in data:
+        if data['imageUrl'] is not "":
             to_delete_old_image = get_product.public_id_image
             api.delete_resources(to_delete_old_image)
-            upload_image = uploader.upload(data['imageUrl'])
-            update_image = upload_image['url']
-            update_public_id = upload_image['public_id']
-        else:
-            update_image = get_product.imageUrl
-            update_public_id = get_product.public_id_image
+
         get_product.title = data['title'] if data['title'] else get_product.title
         get_product.price = data['price'] if data['price'] else get_product.price
         get_product.description = data['description'] if data['description'] else get_product.description
-        get_product.imageUrl = update_image
-        get_product.public_id_image = update_public_id
+        get_product.imageUrl = data['imageUrl'] if data['imageUrl'] else get_product.imageUrl
+        get_product.public_id_image = data['imageId'] if data['imageId'] else get_product.public_id_image
+        get_products.imageName = data['imageName'] if data['imageName'] else get_product.imageName
         get_product.mobile = data['mobile'] if data['mobile'] else get_product.mobile
         get_product.update()
         get_all_products = Product.query.all()

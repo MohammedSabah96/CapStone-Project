@@ -6,6 +6,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./backend:/app
+    depends_on:
+      - db
     restart: always
   client:
     build:
@@ -27,3 +29,11 @@ services:
       - api
       - client
     restart: always
+  db:
+    image: postgres:12.2-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=gkmgkm123A
+      - POSTGRES_DB=capstone

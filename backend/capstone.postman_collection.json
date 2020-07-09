@@ -441,7 +441,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"CoolEvo\", \"price\": \"$150k\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
+              "raw": "{\"title\": \"CoolEvo\", \"price\": \"1500\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
             },
             "url": {
               "raw": "{{host}}/products?name=EBO",
@@ -488,7 +488,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"\", \"price\": \"$250k\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
+              "raw": "{\"title\": \"\", \"price\": \"2500\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
             },
             "url": {
               "raw": "{{host}}/products/2",
@@ -800,22 +800,22 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"Cool Car\", \"price\": \"$150k\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
+              "raw": "{\"title\": \"Car\", \"price\": \"1500\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
             },
             "url": {
-              "raw": "{{host}}/products?name=EBO",
+              "raw": "{{host}}/products?name=EVO",
               "host": [
                 "{{host}}"
               ],
               "path": [
-                "products?name=EBO"
+                "products?name=EVO"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "/products/2",
+          "name": "/products/3",
           "event": [
             {
               "listen": "test",
@@ -847,23 +847,23 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"\", \"price\": \"$250k\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
+              "raw": "{\"title\": \"\", \"price\": \"2500\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
             },
             "url": {
-              "raw": "{{host}}/products/2",
+              "raw": "{{host}}/products/3",
               "host": [
                 "{{host}}"
               ],
               "path": [
                 "products",
-                "2"
+                "3"
               ]
             }
           },
           "response": []
         },
         {
-          "name": "/products/2",
+          "name": "/products/3",
           "event": [
             {
               "listen": "test",
@@ -882,13 +882,13 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "{{host}}/products/2",
+              "raw": "{{host}}/products/3",
               "host": [
                 "{{host}}"
               ],
               "path": [
                 "products",
-                "2"
+                "3"
               ]
             }
           },

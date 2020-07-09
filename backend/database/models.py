@@ -1,15 +1,18 @@
 import os
-from sqlalchemy import Column, String, Integer, DateTime
+from sqlalchemy import Column, String, Integer, DateTime, BIGINT
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from dotenv import load_dotenv
 
-database_filename = "database.db"
-project_dir = os.path.dirname(os.path.abspath(__file__))
-database_path = "sqlite:///{}".format(
-    os.path.join(project_dir, database_filename))
-# database_name = "capstone"
-# database_path = "postgres://{}:{}@{}/{}".format(
-#     'postgres', 'gkmgkm123A', 'localhost:5432', database_name)
+load_dotenv()
+# uncomment the line below if you wanna do tests with test_app.py
+# database_path = os.getenv("DATABASE_URL_TEST")
+
+
+# commit this line if you want to do tests with test_app.py
+# but if you want to do test with postman collection don't commit it
+database_path = os.getenv("DATABASE_URL")
+
 db = SQLAlchemy()
 
 
@@ -18,6 +21,8 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
+    # if you are doing some tests you want to make sure uncomment the line below
+    # db.drop_all()
     db.create_all()
 
 
@@ -54,7 +59,7 @@ class Product(db.Model):
     public_id_image = Column(String(), nullable=False)
     created = Column(DateTime(), nullable=False, default=datetime.utcnow, onupdate=datetime.now)
     owner = Column(String())
-    mobile = Column(Integer())
+    mobile = Column(BIGINT())
     user_id = Column(Integer(), db.ForeignKey('user.id'))
 
     def __init__(self, title, description, price, imageUrl, public_id_image, owner, mobile, user):

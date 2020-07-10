@@ -79,6 +79,7 @@ const Products = (props) => {
     const [message, setMessage] = useState("")
     const {isAuthenticated, getAccessTokenSilently, user} = useAuth0();
     const [announcement, setAnnouncement] = useState([])
+
     useEffect(() => {
         if (props.match.path === "/") {
             axios.get("http://localhost:8080/api/products").then((res) => {
@@ -170,7 +171,6 @@ const Products = (props) => {
 
     }
 
-
     const deleteAnnouncement = (id) => {
         axios.delete("http://localhost:8080/api/announcement/" + id, {
             headers: {
@@ -179,15 +179,12 @@ const Products = (props) => {
         }).then(res => console.log(res.data)).catch(err => console.log(err.response.data))
         setAnnouncement(announcement.filter(el => el.id !== id))
     }
-
-
     const announcementsList = () => {
         return announcement.map(currentAnnouncement => {
             return <Announcement announcement={currentAnnouncement} deleteAnnouncement={deleteAnnouncement}
                                  key={currentAnnouncement.id} user={user}/>
         })
     }
-
 
     return (
         <div className="container">

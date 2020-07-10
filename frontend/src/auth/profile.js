@@ -1,6 +1,6 @@
 import React from "react";
 import {useAuth0} from "@auth0/auth0-react";
-import Announcement from "../component/announcement";
+import Announcement from "../components/announcement";
 
 const Profile = (props) => {
         const {user, loginWithRedirect, logout, isAuthenticated, getAccessTokenSilently} = useAuth0();

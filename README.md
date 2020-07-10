@@ -1,4 +1,11 @@
 # Full Stack Products Shop Final Project (Capstone)
+## Introductions
+This project was made to practice how to implement a backend application, implementing endpoints for `GET,POST,PATCH,DELETE`
+most of the endpoint need an authorization, and of course it has a test file in which is tested each endpoint in success and failure state.
+## Overview
+Welcome to Products Shop Project.
+
+This project is capable of creating products and updated or delete your own products,each product should have a unique title and an image of the product,description of the product,price of the product and mobile number.
 
 ## Pre-requisites
 Developers using this project should already have Docker installed on their local machines.

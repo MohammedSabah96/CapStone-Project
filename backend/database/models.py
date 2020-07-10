@@ -5,11 +5,10 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 load_dotenv()
-# uncomment the line below if you wanna do tests with test_app.py
+# (1) uncomment the line below if you wanna do tests with test_app.py
 # database_path = os.getenv("DATABASE_URL_TEST")
 
-
-# commit this line if you want to do tests with test_app.py
+# (2) commit this line if you want to do tests with test_app.py
 # but if you want to do test with postman collection don't commit it
 database_path = os.getenv("DATABASE_URL")
 
@@ -21,9 +20,12 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    # if you are doing some tests you want to make sure uncomment the line below
+    # (3) if you are doing some tests you want to make sure uncomment the line below
     # db.drop_all()
     db.create_all()
+
+
+"User Model"
 
 
 class User(db.Model):
@@ -48,6 +50,9 @@ class User(db.Model):
     def delete(self):
         db.session.delete(self)
         db.session.commit()
+
+
+"Product Model"
 
 
 class Product(db.Model):
@@ -112,6 +117,9 @@ class Product(db.Model):
     @staticmethod
     def update():
         db.session.commit()
+
+
+"Announcement Model"
 
 
 class Announcement(db.Model):

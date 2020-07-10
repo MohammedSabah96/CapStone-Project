@@ -6,7 +6,9 @@ from cloudinary import uploader, config, api
 from dotenv import load_dotenv
 import os
 
+# this is going to let us using the variables that defined in .env file
 load_dotenv()
+# This is going to config the cloudinary server for upload an image
 config(
     cloud_name=os.getenv('CLOUD_NAME'),
     api_key=os.getenv('API_KEY'),
@@ -28,6 +30,9 @@ def create_app(test_config=None):
                              'GET,PATCH,POST,DELETE,OPTIONS')
         return response
 
+    # this method is gonna get all the products and announcements that inside database and return it as json
+    # does not require an authentication
+
     @app.route("/products", methods=['GET'])
     def get_products():
         all_products = Product.query.all()
@@ -44,6 +49,9 @@ def create_app(test_config=None):
             'announcements': announcements
         })
 
+    # this method is gonna get a specific product and return that specific product as json
+    # this method require an authentication
+
     @app.route('/products/<int:product_id>', methods=['GET'])
     @requires_auth("get:specific-product")
     def get_specific_product(payload, product_id):
@@ -54,6 +62,9 @@ def create_app(test_config=None):
             'success': True,
             'product': get_specific_prod.format_data_long()
         })
+
+    # this method is gonna get all products of the user that login and return these products as json
+    # of course need require an authentication
 
     @app.route('/products/my-products', methods=['GET'])
     @requires_auth("get:my-product")
@@ -69,6 +80,9 @@ def create_app(test_config=None):
             'success': True,
             'products': get_all_my_products_formatted
         })
+
+    # this method is gonna create a product and return all products as json
+    # this method require an authentication
 
     @app.route("/products", methods=['POST'])
     @requires_auth("post:product")
@@ -106,6 +120,9 @@ def create_app(test_config=None):
             'products': products
         })
 
+    # this method is gonna updated a specific product and return all products as json
+    # this method require an authentication
+
     @app.route('/products/<int:product_id>', methods=['PATCH'])
     @requires_auth("patch:product")
     def update_product(payload, product_id):
@@ -133,6 +150,9 @@ def create_app(test_config=None):
             'products': products
         })
 
+    # this method is gonna delete a specific product and return a product_id
+    # this method require an authentication
+
     @app.route('/products/<int:product_id>', methods=['DELETE'])
     @requires_auth("delete:product")
     def delete_product(payload, product_id):
@@ -150,6 +170,9 @@ def create_app(test_config=None):
             'deleted': product_id
         })
 
+    # this method is gonna get a specific announcement and return it as json
+    # this method require an authentication with admin
+
     @app.route('/announcement/<int:ad_id>', methods=['GET'])
     @requires_auth("get:specific-announcement")
     def get_specific_announcement(payload, ad_id):
@@ -160,6 +183,9 @@ def create_app(test_config=None):
             'success': True,
             'announcement': get_specific_announce.format()
         })
+
+    # this method is gonna create an announcement and return it as json
+    # this method require an authentication with admin
 
     @app.route('/announcement', methods=['POST'])
     @requires_auth("post:announcement")
@@ -174,6 +200,9 @@ def create_app(test_config=None):
             'success': True,
             'announcement': announcement.format()
         })
+
+    # this method is gonna update a specific an announcement and return it as json
+    # this method require an authentication with admin
 
     @app.route('/announcement/<int:ad_id>', methods=['PATCH'])
     @requires_auth("patch:announcement")
@@ -194,6 +223,9 @@ def create_app(test_config=None):
             'announcements': announcements
         })
 
+    # this method is gonna delete a specific an announcement and return ad_id
+    # this method require an authentication with admin
+
     @app.route('/announcement/<int:ad_id>', methods=['DELETE'])
     @requires_auth("delete:announcement")
     def delete_announcement(payload, ad_id):
@@ -207,6 +239,8 @@ def create_app(test_config=None):
             'deleted': ad_id
         })
 
+    # this method is gonna handler bad request
+
     @app.errorhandler(400)
     def bad_request(error):
         return jsonify({
@@ -214,6 +248,8 @@ def create_app(test_config=None):
             "error": 400,
             "message": "bad request"
         }), 400
+
+    # this method is gonna handler file not found
 
     @app.errorhandler(404)
     def file_not_found(error):
@@ -223,6 +259,8 @@ def create_app(test_config=None):
             'message': 'File Not Found'
         }), 404
 
+    # this method is gonna handler unprocessable
+
     @app.errorhandler(422)
     def unprocessable(error):
         return jsonify({
@@ -230,6 +268,8 @@ def create_app(test_config=None):
             "error": 422,
             "message": "unprocessable"
         }), 422
+
+    # this method is gonna handler AuthError
 
     @app.errorhandler(AuthError)
     def auth_error(error):

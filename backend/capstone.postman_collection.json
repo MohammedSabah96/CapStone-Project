@@ -441,7 +441,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"CoolEvo\", \"price\": \"1500\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
+              "raw": "{\"title\": \"CoolEvo\", \"price\": \"1500\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"imageId\": \"samples/maxresdefault\",\"imageName\": \"maxresdefault.jpg\", \"mobile\":4435674523}"
             },
             "url": {
               "raw": "{{host}}/products?name=EBO",
@@ -488,7 +488,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"\", \"price\": \"2500\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
+              "raw": "{\"title\": \"\", \"price\": \"2500\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"imageId\": \"\",\"imageName\": \"\",\"mobile\":573423325}"
             },
             "url": {
               "raw": "{{host}}/products/2",
@@ -668,7 +668,7 @@
         "bearer": [
           {
             "key": "token",
-            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmNTEwNjdkNDgzN2QwMDE5NGZlNzBhIiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk0MTkyMDMyLCJleHAiOjE1OTQyNzg0MzIsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpwcm9kdWN0IiwiZ2V0Om15LXByb2R1Y3QiLCJnZXQ6c3BlY2lmaWMtcHJvZHVjdCIsInBhdGNoOnByb2R1Y3QiLCJwb3N0OnByb2R1Y3QiXX0.Gyq0qh70ZqfAaA7mUFZnoXn5JHULQETt0m65NUoGHCOEd2btXjdm3Jye2EEehrp1Sn4Pd1rxSU3jvlVUQxwZnIOV8KXpnImT-CNoSdlLFZXagqHSkhOtmiN4Gb3uPXbLoAV5HtTGWtndjDfrTV5E-X8drE5bRtnz021ivFe3o9kL44w_rFBJr1KBIfj0DWLdznP4jPyaEucS07qqetMxkVN0sFA7QLmq7CNuQOzqW_Vv58RBw119HmuZBPe0uq9NPZ2i9HRCvzfdqX0CYch9y-23CXG9NcaivBExjS2Z9MDsozEnj5XcB9oLRXb2SfnaxzOZ3I9akyutIlaD04C2Qw",
+            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmNTEwNjdkNDgzN2QwMDE5NGZlNzBhIiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk0NDAwMDE5LCJleHAiOjE1OTQ0ODY0MTksImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTpwcm9kdWN0IiwiZ2V0Om15LXByb2R1Y3QiLCJnZXQ6c3BlY2lmaWMtcHJvZHVjdCIsInBhdGNoOnByb2R1Y3QiLCJwb3N0OnByb2R1Y3QiXX0.Fx1Thn4A9RT81CuQjHU6gGDVUwv3_x_gLToSAqzqfwY3r8ByocKVDF7y0UohIeGbK4g_NS_yuDIyUGYaytCL0KtHugpKNlbkfM5bPE_2QsTLT-emLZITUuiptbKnUEa5kl3uPCYAe4B9qtLxpsFTZMYX9KwyAqTW8if-u1Zn6F8eCRuTX34Uq0-vFCylgn2X63Rwrfr5b5uDQ2vYQZfIlsUufPiyXmVQAo8EI8LAU_v_fX_Jcu1Pw6wvHsFPy98CIMIjzoqtHwYkFySBd-JAKay5ihlayglDIPGvAgsmxG_3UbNS1sYwavJALh4f9mvP9toTIBw7enIymcaO3GojxA",
             "type": "string"
           }
         ]
@@ -800,7 +800,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"Car\", \"price\": \"1500\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\", \"mobile\":4435674523}"
+              "raw": "{\"title\": \"Car\", \"price\": \"1500\", \"description\": \"Beautiful\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"imageId\": \"samples/maxresdefault\",\"imageName\": \"maxresdefault.jpg\", \"mobile\":4435674523}"
             },
             "url": {
               "raw": "{{host}}/products?name=EVO",
@@ -847,7 +847,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\": \"\", \"price\": \"2500\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"mobile\":573423325}"
+              "raw": "{\"title\": \"\", \"price\": \"2500\", \"description\": \"\", \"imageUrl\": \"https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg\",\"imageId\": \"\",\"imageName\": \"\",\"mobile\":573423325}"
             },
             "url": {
               "raw": "{{host}}/products/3",
@@ -1054,7 +1054,7 @@
         "bearer": [
           {
             "key": "token",
-            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2MzYzUwMDE5ZDBiYzg5IiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk0MjAxNDE2LCJleHAiOjE1OTQyODc4MTYsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphbm5vdW5jZW1lbnQiLCJkZWxldGU6cHJvZHVjdCIsImdldDpteS1wcm9kdWN0IiwiZ2V0OnNwZWNpZmljLWFubm91bmNlbWVudCIsImdldDpzcGVjaWZpYy1wcm9kdWN0IiwicGF0Y2g6YW5ub3VuY2VtZW50IiwicGF0Y2g6cHJvZHVjdCIsInBvc3Q6YW5ub3VuY2VtZW50IiwicG9zdDpwcm9kdWN0Il19.iVUwjbHAinKXuiV4X8fGDS_K01rP4epMAA1nMo1oqn6ZJUK9E2MVURk6YG6r2A-2Ve8ha3egaf6SfwuKmme1e0Mtwwch2q3ptMY13kitpAaS60bT2lmFmy_FmbSAAimVcOLBgDPA9ng6JCJ2_szEITWLPR09Y4innwzoHieLjKy8d_4y3aJ3RHu5aHMIpxMMsuRFcrQ3ObgKWzIlMUbPIMd_8MRfCgynKgmpm_A6CQxZ8uIdf8mFwIXJ64ewvNjAWOw_XroRnNKYMvVdKsxSeZux2RWBrQ0iks-By8hcFsmM3AbZwOluolocKipesqz2SWv87SMocCBIvbjUfly4vw",
+            "value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2MzYzUwMDE5ZDBiYzg5IiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk0NDAwMDc0LCJleHAiOjE1OTQ0ODY0NzQsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphbm5vdW5jZW1lbnQiLCJkZWxldGU6cHJvZHVjdCIsImdldDpteS1wcm9kdWN0IiwiZ2V0OnNwZWNpZmljLWFubm91bmNlbWVudCIsImdldDpzcGVjaWZpYy1wcm9kdWN0IiwicGF0Y2g6YW5ub3VuY2VtZW50IiwicGF0Y2g6cHJvZHVjdCIsInBvc3Q6YW5ub3VuY2VtZW50IiwicG9zdDpwcm9kdWN0Il19.VgbBRo4bZD6_lorDFL5vCoaabY0uLTkunHqkGZqC-pY1sPHyq-8bqpcJpR1kb414CooNsg1SlalCl6ZyCJqnoAB3NBQEGxeAEIjhZ4050b_v-F5YwIEy97vEYVhLSZjbVacgSnM8If5iNCBjfZXoFZyn_bv7TLaj4V84kHJfx6CY6UbrOGwEymnm9Mj4a500PYy5y8AJ2VdI6bgLa61WUcRgQ0VXmW_yKLGqIY2HEKAdvY4YP2mZmo5BNGctjyW8t008Zw_8-AIBGqvKkhA64pJE6lfMmO3ZGXDngoF3X8c-be_JvJoW_HnTZ4gC3VYYNAdSo4qgQjOe-kMi56tp4g",
             "type": "string"
           }
         ]

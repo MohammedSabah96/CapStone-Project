@@ -113,7 +113,7 @@ def create_app(test_config=None):
         if not get_product:
             abort(404)
         data = request.get_json()
-        if data['imageUrl'] is not "":
+        if data['imageUrl'] != "":
             to_delete_old_image = get_product.public_id_image
             api.delete_resources(to_delete_old_image)
 

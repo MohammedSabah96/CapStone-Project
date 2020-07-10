@@ -6,7 +6,6 @@ import CreateProduct from "./create_product";
 import EditProduct from "./edit_product";
 import SpecificProduct from "./get_specific_product";
 import Loading from "./Loading";
-import {CircularProgressbar} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 
@@ -70,9 +69,7 @@ const Product = (props) => {
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest'
                 }
-            })
-                .then(res => console.log(res))
-                .catch(err => console.log(err.response))
+            }).then(res => console.log(res)).catch(err => console.log(err.response))
         }
         const file = event.target.files[0]
         setFileName(file.name)
@@ -97,10 +94,18 @@ const Product = (props) => {
                     setTimeout(() => setUploadPercentageImage(0), 10000)
                 }
             }).then(res => {
-                console.log(res)
                 setDeleteImage(res.data.delete_token)
                 setImageUrl(res.data.secure_url)
                 setImageId(res.data.public_id)
+                window.addEventListener("beforeunload", function (event) {
+                    console.log(deleteImage)
+                    axios.post(`https://api.cloudinary.com/v1_1/devstore-capstone/delete_by_token`, {token: res.data.delete_token}, {
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    }).then(res => console.log(res)).catch(err => console.log(err.response))
+
+                });
             }).catch(res => console.log(res.response))
         }
         setBtn(false)
@@ -236,7 +241,6 @@ const Product = (props) => {
             )
         }
     }
-
 
     return (
         <div className="container">

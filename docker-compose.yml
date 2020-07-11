@@ -3,7 +3,7 @@ services:
   api:
     build:
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: backend/Dockerfile
     volumes:
       - ./backend:/app
     depends_on:
@@ -12,7 +12,7 @@ services:
   client:
     build:
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: frontend/Dockerfile
     stdin_open: true
     tty: true
     volumes:
@@ -22,7 +22,7 @@ services:
   nginx:
     build:
       context: ./nginx
-      dockerfile: Dockerfile
+      dockerfile: nginx/Dockerfile
     ports:
       - "8080:80"
     depends_on:

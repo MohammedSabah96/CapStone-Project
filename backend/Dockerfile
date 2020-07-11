@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY . /app
 #for Production
-#ENTRYPOINT ["gunicorn","-b",":8080","app:APP","--timeout 90"]
+CMD ["gunicorn","-b",":8080","app:APP"]
 
 #for Development
-ENTRYPOINT ["python","app.py"]
+#ENTRYPOINT ["python","app.py"]

@@ -1,11 +1,15 @@
 FROM python:3.8.2-slim
 
-COPY ./requirements.txt ./
+COPY requirements.txt ./
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
 WORKDIR /app
-COPY . /app
 
-CMD gunicorn --bind 0.0.0.0:$PORT wsgi --reload
+COPY . /app
+#for Production
+CMD ["gunicorn","-b",":8080","app:APP","--timeout 90"]
+#CMD gunicorn --bind 0.0.0.0:$PORT wsgi
+#for Development
+#ENTRYPOINT ["python","app.py"]

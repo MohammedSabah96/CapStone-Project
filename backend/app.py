@@ -2,7 +2,7 @@ from flask import Flask, request, abort, jsonify
 from flask_cors import CORS
 from database.models import setup_db, Product, User, Announcement
 from auth.auth import requires_auth, AuthError
-from cloudinary import uploader, config, api
+from cloudinary import config, api
 from dotenv import load_dotenv
 import os
 
@@ -288,4 +288,4 @@ def create_app(test_config=None):
 APP = create_app()
 
 if __name__ == '__main__':
-    APP.run(host='0.0.0.0', port=os.getenv('PORT'), debug=True)
+    APP.run(host='0.0.0.0', port=8080)

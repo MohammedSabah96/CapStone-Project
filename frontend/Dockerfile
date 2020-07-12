@@ -1,9 +1,15 @@
-FROM node:13.12.0-alpine
-COPY package.json /data/
-WORKDIR /data/
+FROM node:13.12.0-alpine as builder
+
+WORKDIR '/app'
+COPY ./package.json ./
+
 RUN npm install --silent
-RUN npm install react-scripts@3.4.1 -g --silent
-ENV PATH /data/node_modules/.bin:$PATH
-COPY . /data/app/
-WORKDIR /data/app/
-CMD ["npm", "start"]
+
+COPY . .
+
+RUN npm run build
+
+FROM nginx
+EXPOSE 3000
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /app/build /usr/share/nginx/html

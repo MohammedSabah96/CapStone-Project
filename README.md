@@ -25,7 +25,8 @@ Then, you can see both backend and frontend on following urls
 
 - backend: http://localhost:8080/api/
 - frontend: http://localhost:8080/
-
+###### In the production:
+- backend: https://products-shop-api.herokuapp.com/products
 ## Testing
 
 For testing you need to go to [`./backend/database/models.py`](./backend/database/models.py). And read the comment carefully
@@ -63,6 +64,8 @@ There are five types of errors the API will return`;
 
 ### Endpoints
 `Note: We are gonna use Postman if you want to use curl it's up to you`
+
+If you want run your endpoint with production use this url `https://products-shop-api.herokuapp.com/` instead of `localhost:8080/api/products`
 
 So before we are gonna start make sure you put the authentication token in postman
 from Authorization choose type Bearer token  and add the token
@@ -343,7 +346,7 @@ user| `get:specific-product`, `get:my-product`, `post:product`, `patch:product`,
 Before running the following command, you need to ensure that you're successfully logged in to both `docker` and `heroku`.
 
 ```
-docker tag <docker_image_id> registry.heroku.com/hayashis-kitchen-api/web
-docker push registry.heroku.com/hayashis-kitchen-api/web
-heroku container:release web --app=hayashis-kitchen-api
+docker tag <docker_image_id> registry.heroku.com/<your name app>/web
+docker push registry.heroku.com/<your name app>/web
+heroku container:release web --app=<your name app>
 ```

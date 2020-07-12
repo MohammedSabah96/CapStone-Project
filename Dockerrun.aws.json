@@ -30,7 +30,7 @@
         "client",
         "server"
       ],
-      "memory": 256:
+      "memory": 256
     }
   ]
 }

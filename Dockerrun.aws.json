@@ -3,21 +3,21 @@
   "containerDefinitions": [
     {
       "name": "client",
-      "image": "mohammeds96/client-server",
+      "image": "mohammeds96/client-server:v3",
       "hostname": "client",
       "essential": false,
       "memory": 256
     },
     {
       "name": "server",
-      "image": "mohammeds96/api-server",
+      "image": "mohammeds96/api-server:v3",
       "hostname": "api",
       "essential": false,
       "memory": 256
     },
     {
       "name": "nginx",
-      "image": "mohammeds96/nginx-server",
+      "image": "mohammeds96/nginx-server:v3",
       "hostname": "nginx",
       "essential": true,
       "portMappings": [
@@ -30,7 +30,7 @@
         "client",
         "server"
       ],
-      "memory": 256
+      "memory": 256:v3
     }
   ]
 }

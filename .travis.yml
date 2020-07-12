@@ -11,15 +11,15 @@ script:
 
 
 after_success:
-  - docker build -t mohammeds96/client-server:v2 ./frontend
-  - docker build -t mohammeds96/api-server:v2 ./backend
-  - docker build -t mohammeds96/nginx-server:v2 ./nginx
+  - docker build -t mohammeds96/client-server:v3 ./frontend
+  - docker build -t mohammeds96/api-server:v3 ./backend
+  - docker build -t mohammeds96/nginx-server:v3 ./nginx
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take these images and push them to docker hub
-  - docker push mohammeds96/client-server:v2
-  - docker push mohammeds96/api-server:v2
-  - docker push mohammeds96/nginx-server:v2
+  - docker push mohammeds96/client-server:v3
+  - docker push mohammeds96/api-server:v3
+  - docker push mohammeds96/nginx-server:v3
 
 deploy:
   edge: true

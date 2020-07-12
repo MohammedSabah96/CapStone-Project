@@ -3,16 +3,13 @@ from flask_cors import CORS
 from database.models import setup_db, Product, User, Announcement
 from auth.auth import requires_auth, AuthError
 from cloudinary import config, api
-from dotenv import load_dotenv
 import os
 
-# this is going to let us using the variables that defined in .env file
-load_dotenv()
 # This is going to config the cloudinary server for upload an image
 config(
-    cloud_name=os.getenv('CLOUD_NAME'),
-    api_key=os.getenv('API_KEY'),
-    api_secret=os.getenv('API_SECRET')
+    cloud_name=os.environ['CLOUD_NAME'],
+    api_key=os.environ['API_KEY'],
+    api_secret=os.environ['API_SECRET']
 )
 
 
@@ -288,4 +285,4 @@ def create_app(test_config=None):
 APP = create_app()
 
 if __name__ == '__main__':
-    APP.run(host='0.0.0.0', port=8080)
+    APP.run(host='0.0.0.0', port=8080, debug=os.environ.get('DEBUG', False))

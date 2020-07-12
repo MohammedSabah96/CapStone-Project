@@ -6,14 +6,14 @@
       "image": "mohammeds96/client-server",
       "hostname": "client",
       "essential": false,
-      "memory": 128
+      "memory": 256
     },
     {
       "name": "server",
       "image": "mohammeds96/api-server",
       "hostname": "api",
       "essential": false,
-      "memory": 128
+      "memory": 256
     },
     {
       "name": "nginx",
@@ -30,7 +30,7 @@
         "client",
         "server"
       ],
-      "memory": 128
+      "memory": 256
     }
   ]
 }

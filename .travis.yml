@@ -11,15 +11,15 @@ script:
 
 
 after_success:
-  - docker build -t mohammeds96/client-server:v1 ./frontend
-  - docker build -t mohammeds96/api-server:v1 ./backend
-  - docker build -t mohammeds96/nginx-server:v1 ./nginx
+  - docker build -t mohammeds96/client-server:v2 ./frontend
+  - docker build -t mohammeds96/api-server:v2 ./backend
+  - docker build -t mohammeds96/nginx-server:v2 ./nginx
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take these images and push them to docker hub
-  - docker push mohammeds96/client-server:v1
-  - docker push mohammeds96/api-server:v1
-  - docker push mohammeds96/nginx-server:v1
+  - docker push mohammeds96/client-server:v2
+  - docker push mohammeds96/api-server:v2
+  - docker push mohammeds96/nginx-server:v2
 
 deploy:
   edge: true
@@ -28,7 +28,7 @@ deploy:
   app: products-shop
   env: ProductsShop-env
   bucket_name: elasticbeanstalk-eu-central-1-479537030235
-  bucket_path: docker-multi
+  bucket_path: products-shop
   on:
     branch: master
   access_key_id: $AWS_ACCESS_KEY

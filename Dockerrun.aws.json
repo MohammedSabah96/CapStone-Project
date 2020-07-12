@@ -5,13 +5,15 @@
       "name": "client",
       "image": "mohammeds96/client-server",
       "hostname": "client",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "server",
       "image": "mohammeds96/api-server",
       "hostname": "api",
-      "essential": false
+      "essential": false,
+      "memory": 128
     },
     {
       "name": "nginx",
@@ -27,7 +29,8 @@
       "links": [
         "client",
         "server"
-      ]
+      ],
+      "memory": 128
     }
   ],
   "family": ""

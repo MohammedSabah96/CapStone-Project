@@ -2,11 +2,15 @@ import os
 from sqlalchemy import Column, String, Integer, DateTime, BIGINT
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from dotenv import load_dotenv
+
+# this is going to let us using the variables that defined in .env file
+load_dotenv()
 
 # (1) uncomment the line below if you wanna do tests with test_app.py
-# database_path = os.getenv("DATABASE_URL_TEST")
+# database_path = os.environ.get("DATABASE_URL_TEST")
 
-# (2) commit this line if you want to do tests with test_app.py
+# (2) commit line[11,12,13,14,15,16] if you want to do tests with test_app.py
 # but if you want to do test with postman collection don't commit it
 pgUser = os.environ['PGUSER']
 pgPass = os.environ['PGPASSWORD']
@@ -14,6 +18,7 @@ pgHost = os.environ['PGHOST']
 pgPort = os.environ['PGPORT']
 pgDatabase = os.environ['PGDATABASE']
 database_path = "postgres://{}:{}@{}:{}/{}".format(pgUser, pgPass, pgHost, pgPort, pgDatabase)
+
 db = SQLAlchemy()
 
 

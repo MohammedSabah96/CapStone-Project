@@ -23,6 +23,7 @@ services:
       - API_KEY=474371828699186
       - API_SECRET=84V9Z0mM5zTNZt14fxMykFz3PUA
       - DEBUG=True
+      - SERVER_NAME=18.158.75.204
     depends_on:
       - postgres
     restart: always

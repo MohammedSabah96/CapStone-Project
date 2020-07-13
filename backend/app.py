@@ -7,9 +7,9 @@ import os
 
 # This is going to config the cloudinary server for upload an image
 config(
-    cloud_name=os.environ['CLOUD_NAME'],
-    api_key=os.environ['API_KEY'],
-    api_secret=os.environ['API_SECRET']
+    cloud_name=os.environ.get('CLOUD_NAME'),
+    api_key=os.environ.get('API_KEY'),
+    api_secret=os.environ.get('API_SECRET')
 )
 
 

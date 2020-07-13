@@ -8,7 +8,19 @@ from dotenv import load_dotenv
 # this is going to let us using the variables that defined in .env file
 load_dotenv()
 # this variable has an admin token so all the test pass
-ADMIN_TOKEN = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9.eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2MzYzUwMDE5ZDBiYzg5IiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcmluZm8iXSwiaWF0IjoxNTk0MzY5NDM1LCJleHAiOjE1OTQ0NTU4MzUsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphbm5vdW5jZW1lbnQiLCJkZWxldGU6cHJvZHVjdCIsImdldDpteS1wcm9kdWN0IiwiZ2V0OnNwZWNpZmljLWFubm91bmNlbWVudCIsImdldDpzcGVjaWZpYy1wcm9kdWN0IiwicGF0Y2g6YW5ub3VuY2VtZW50IiwicGF0Y2g6cHJvZHVjdCIsInBvc3Q6YW5ub3VuY2VtZW50IiwicG9zdDpwcm9kdWN0Il19.hFuqRhdzxNOuJhjxjKiz8VnAOtYTk3nKFGMJYcmoOOrPyirsJRgdP3yxk6fS4a-6tjzcTs7ZYOysEsehpSIHazxo6cMJk-HmRfOmlOK1C0sbBNI66ICvpo7xc6-paxptAmsnlRYS8C8U0Tv_a4_WwFDkyvmqJZdG8yMbHS7vUmiahRucg3sesni66J2iMFCA-A-yjBXovwVS4K7ZbD4niRJ2lhrbO8q9Yhji6qhFPePACb8LtE_37b43tlui31OZybV5bXjVofryiDLdtE14lCBPSl6ZoxyZMjnVH98VmQRhi6lrnm6-sBR5StdrWWLkg9NgLSucaanoXRkNOC_KTg"
+ADMIN_TOKEN = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9" \
+              ".eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2M" \
+              "zYzUwMDE5ZDBiYzg5IiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcm" \
+              "luZm8iXSwiaWF0IjoxNTk0NjM2NTg1LCJleHAiOjE1OTQ3MjI5ODUsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM" \
+              "254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphbm5" \
+              "vdW5jZW1lbnQiLCJkZWxldGU6cHJvZHVjdCIsImdldDpteS1wcm9kdWN0IiwiZ2V0OnNwZWNpZmljLWFubm91bmNlbWVudCIs" \
+              "ImdldDpzcGVjaWZpYy1wcm9kdWN0IiwicGF0Y2g6YW5ub3VuY2VtZW50IiwicGF0Y2g6cHJvZH" \
+              "VjdCIsInBvc3Q6YW5ub3VuY2VtZW50IiwicG9zdDpwcm9kdWN0Il19" \
+              ".GaHi9iqcafHZlljS0BCoTMSVkHIdCgnrI3m7o74kaKs0UJskX8l3cC5KRTx0pAYjTBCwT2MfKflDKy1l" \
+              "eqfWHrlHQWUhuTCmFx6zCfGpkT-Dvhln4TnFrykrAkL10yoMMvbpQ7osdfWvYFEB" \
+              "_q0SowSiJP8mKa7Dn5-NIdEauIcJPpnRQemQUOdTkTYNeHaF4DbD" \
+              "q5l1gBiagbagbyGTzSUYFtFl5eo_8LuNCrZUJxtgE0rbjEjyAXSnAr1V" \
+              "_vd3mpjHjaJdiGJArZnKbHI5yNZJ-6KIo4_BcuARv3CbEYtYtoC8LWrKdFNdb450oMGh0CC-4cN3Po9G04sBCQMEeQ"
 
 
 class CapstoneTestCase(unittest.TestCase):
@@ -18,7 +30,7 @@ class CapstoneTestCase(unittest.TestCase):
         """Define test variables and initialize app."""
         self.app = create_app()
         self.client = self.app.test_client
-        self.database_path = os.getenv('DATABASE_URL_TEST')
+        self.database_path = os.environ.get('DATABASE_URL_TEST')
         setup_db(self.app, self.database_path)
 
         # binds the app to the current context

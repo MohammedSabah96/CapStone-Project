@@ -9,7 +9,7 @@
       "memory": 256
     },
     {
-      "name": "server",
+      "name": "api",
       "image": "mohammeds96/api-server:latest",
       "hostname": "api",
       "essential": false,
@@ -28,7 +28,7 @@
       ],
       "links": [
         "client",
-        "server"
+        "api"
       ],
       "memory": 256
     }

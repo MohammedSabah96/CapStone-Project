@@ -56,18 +56,32 @@ For testing you need to go to [`./backend/database/models.py`](./backend/databas
 5. make sure to add at least one product and one announcement for successfully testing.
 6. After that run the file with postman.
 
+## DATA MODELING:
+######MODELS.PY
+The schema for the database and helper methods to simplify API behavior are in models.py:
+
+- There are three tables created: Product, User, and Items_for_Sale
+- The Product table is used by the role 'user' to add new products and their warranty dates, and also retrieve these products.
+- The Product table has a foreign key on the User table for user_id.
+- The Items_for_Sale table is used by the role 'seller' to add new items to sell, and to retrieve these items.
+- The Items_for_Sale table has a foreign key on the User table for user_id as well.
+- The User table keeps track of the users who want to post or retrieve their products or items by storing their name, email, and products/item.
+- Each table has an insert, update, delete, and format helper functions.
 
 ## API Reference
 The backend is hosted at http://localhost:8080/api/
 
 ### Error Handling
 
-There are five types of errors the API will return`;
+There are six types of errors the API will return`;
 
 - 400 - bad request
 - 404 - File Not Found
+- 409 - duplicate_resource
 - 422 - unprocessable
-- 401- unauthorized
+- 401 - unauthorized
+- 500 - server error
+
 
 ### Endpoints
 `Note: We are gonna use Postman if you want to use curl it's up to you`

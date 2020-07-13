@@ -8,19 +8,7 @@ from dotenv import load_dotenv
 # this is going to let us using the variables that defined in .env file
 load_dotenv()
 # this variable has an admin token so all the test pass
-ADMIN_TOKEN = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkxDMDl5czMzdGs4d1FuaGNiM0dyQyJ9" \
-              ".eyJpc3MiOiJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWVmMDM2N2NhN2M" \
-              "zYzUwMDE5ZDBiYzg5IiwiYXVkIjpbInByb2R1Y3QiLCJodHRwczovL2NvZmZlLXNoby5hdXRoMC5jb20vdXNlcm" \
-              "luZm8iXSwiaWF0IjoxNTk0NjM2NTg1LCJleHAiOjE1OTQ3MjI5ODUsImF6cCI6IlZxVTc3R0UxQzFxbmllQk1DdnpKM" \
-              "254ZXhBOUw0UExEIiwic2NvcGUiOiJvcGVuaWQgcHJvZmlsZSBlbWFpbCIsInBlcm1pc3Npb25zIjpbImRlbGV0ZTphbm5" \
-              "vdW5jZW1lbnQiLCJkZWxldGU6cHJvZHVjdCIsImdldDpteS1wcm9kdWN0IiwiZ2V0OnNwZWNpZmljLWFubm91bmNlbWVudCIs" \
-              "ImdldDpzcGVjaWZpYy1wcm9kdWN0IiwicGF0Y2g6YW5ub3VuY2VtZW50IiwicGF0Y2g6cHJvZH" \
-              "VjdCIsInBvc3Q6YW5ub3VuY2VtZW50IiwicG9zdDpwcm9kdWN0Il19" \
-              ".GaHi9iqcafHZlljS0BCoTMSVkHIdCgnrI3m7o74kaKs0UJskX8l3cC5KRTx0pAYjTBCwT2MfKflDKy1l" \
-              "eqfWHrlHQWUhuTCmFx6zCfGpkT-Dvhln4TnFrykrAkL10yoMMvbpQ7osdfWvYFEB" \
-              "_q0SowSiJP8mKa7Dn5-NIdEauIcJPpnRQemQUOdTkTYNeHaF4DbD" \
-              "q5l1gBiagbagbyGTzSUYFtFl5eo_8LuNCrZUJxtgE0rbjEjyAXSnAr1V" \
-              "_vd3mpjHjaJdiGJArZnKbHI5yNZJ-6KIo4_BcuARv3CbEYtYtoC8LWrKdFNdb450oMGh0CC-4cN3Po9G04sBCQMEeQ"
+ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN')
 
 
 class CapstoneTestCase(unittest.TestCase):
@@ -46,18 +34,25 @@ class CapstoneTestCase(unittest.TestCase):
             self.new_announcement_2.insert()
             self.new_user = User(name="admin")
             self.new_user.insert()
-            self.new_product_1 = Product(title="Car 1", description="Cool Car 1", price="1500$",
-                                         imageUrl="https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg",
-                                         public_id_image="3njkdng832332", imageName="maxresdefault.jpg", owner="admin",
-                                         mobile=7754322264,
-                                         user=self.new_user)
-            self.new_product_1.insert()
-            self.new_product_2 = Product(title="Car 2", description="Cool Car 2", price="2000$",
-                                         imageUrl="https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg",
-                                         public_id_image="3njkdng8sad32332", imageName="maxresdefault.jpg",
-                                         owner="admin", mobile=77554222264,
-                                         user=self.new_user)
-            self.new_product_2.insert()
+            self.product_1 = Product(title="Car 1", description="Cool Car 1",
+                                     price="1500$",
+                                     imageUrl="i.ytimg.com/vi/-\
+                                        Yb7SMMZdWc/maxresdefault.jpg",
+                                     public_id_image="3njkdng832332",
+                                     imageName="maxresdefault.jpg",
+                                     owner="admin",
+                                     mobile=7754322264,
+                                     user=self.new_user)
+            self.product_1.insert()
+            self.product_2 = Product(title="Car 2", description="Cool Car 2",
+                                     price="2000$",
+                                     imageUrl="i.ytimg.com/vi/-\
+                                        Yb7SMMZdWc/maxresdefault.jpg",
+                                     public_id_image="3njkdng8sad32332",
+                                     imageName="maxresdefault.jpg",
+                                     owner="admin", mobile=77554222264,
+                                     user=self.new_user)
+            self.product_2.insert()
 
     def tearDown(self):
         """Executed after each test"""
@@ -75,7 +70,8 @@ class CapstoneTestCase(unittest.TestCase):
 
         pass
 
-    # this method is gonna test for getting all products and announcements and  response with 200
+    # this method is gonna test for getting all products
+    # and announcements and  response with 200
 
     def test_get_products(self):
         res = self.client().get('/products')
@@ -85,7 +81,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['products'])
         self.assertTrue(data['announcements'])
 
-    # this method is gonna test for getting a specific product and  response with 200
+    # this method is gonna test for getting a specific product
+    # and  response with 200
 
     def test_get_specific_products(self):
         res = self.client().get('/products/1', headers={
@@ -96,7 +93,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['product'])
 
-    # this method is gonna test for getting a specific product without authorization header and response with 401
+    # this method is gonna test for getting a specific product
+    # without authorization header and response with 401
 
     def test_get_401_specific_products_authorization_header_missing(self):
         res = self.client().get('/products/1')
@@ -107,7 +105,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for getting a specific product that does not exists  and  response with 404
+    # this method is gonna test for getting a specific product
+    # that does not exists  and  response with 404
 
     def test_get_404_specific_products(self):
         res = self.client().get('/products/1000', headers={
@@ -119,7 +118,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error'], 404)
         self.assertEqual(data['message'], 'File Not Found')
 
-    # this method is gonna test for getting specific products that the user have and response with 200
+    # this method is gonna test for getting specific products
+    # that the user have and response with 200
 
     def test_get_my_products(self):
         res = self.client().get('/products/my-products?name=admin', headers={
@@ -130,7 +130,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['products'])
 
-    # this method is gonna test for getting specific products without give that specific user and response with 400
+    # this method is gonna test for getting specific products
+    # without give that specific user and response with 400
 
     def test_get_400_bad_request_my_products(self):
         res = self.client().get('/products/my-products', headers={
@@ -142,7 +143,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'bad request')
         self.assertEqual(data['error'], 400)
 
-    # this method is gonna test for getting a specific products that the user have but does not exists
+    # this method is gonna test for getting a specific products
+    # that the user have but does not exists
     # and response with 404
 
     def test_get_404_file_not_found_my_products(self):
@@ -155,7 +157,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'File Not Found')
         self.assertEqual(data['error'], 404)
 
-    # this method is gonna test for getting specific products that the user have but without authorization header
+    # this method is gonna test for getting specific products
+    # that the user have but without authorization header
     # and response with 401
 
     def test_get_401_authorization_header_missing_my_products(self):
@@ -167,14 +170,16 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for create a product and response with 200
+    # this method is gonna test for create a product
+    # and response with 200
 
     def test_post_product(self):
         new_product = {
             'title': 'New Car',
             'description': 'Cool Car',
             'price': '2000',
-            'imageUrl': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.pexels.com%2Fphotos%2F210019%2Fpexels-photo-210019.jpeg&f=1&nofb=1',
+            'imageUrl': 'www.drivespark.com/images/2020-07/honda-wr-v-\
+                    exterior-13.jpg',
             "imageId": "samples/maxresdefault",
             "imageName": "maxresdefault.jpg",
             'mobile': 7763342935,
@@ -187,14 +192,16 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['products'])
 
-    # this method is gonna test for create a product without specify a username in url and response with 400
+    # this method is gonna test for create a product
+    # without specify a username in url and response with 400
 
     def test_post_400_bad_request_product(self):
         new_product = {
             'title': 'New Car',
             'description': 'Cool Car',
             'price': '2000',
-            'imageUrl': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.pexels.com%2Fphotos%2F210019%2Fpexels-photo-210019.jpeg&f=1&nofb=1',
+            'imageUrl': 'www.drivespark.com/images/2020-07/honda-wr-v-\
+                    exterior-13.jpg',
             "imageId": "samples/maxresdefault",
             "imageName": "maxresdefault.jpg",
             'mobile': 7763342935,
@@ -208,14 +215,16 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'bad request')
         self.assertEqual(data['error'], 400)
 
-    # this method is gonna test for create a product without specify authorization header and response with 401
+    # this method is gonna test for create a product
+    # without specify authorization header and response with 401
 
     def test_post_product_401_authorization_header_missing(self):
         new_product = {
             'title': 'New Car',
             'description': 'Cool Car',
             'price': '2000',
-            'imageUrl': 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.pexels.com%2Fphotos%2F210019%2Fpexels-photo-210019.jpeg&f=1&nofb=1',
+            'imageUrl': 'www.drivespark.com/images/2020-07/honda-wr-v-\
+                    exterior-13.jpg',
             "imageId": "samples/maxresdefault",
             "imageName": "maxresdefault.jpg",
             'mobile': 7763342935,
@@ -228,14 +237,15 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for update a specific product and response with 200
+    # this method is gonna test for update a specific product
+    # and response with 200
 
     def test_patch_product(self):
         update_product = {
             'title': 'Cool Car',
             'description': 'The Beauty Car :D',
             'price': '7000',
-            'imageUrl': 'https://i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg',
+            'imageUrl': 'i.ytimg.com/vi/-Yb7SMMZdWc/maxresdefault.jpg',
             "imageId": "samples/maxresdefault",
             "imageName": "maxresdefault.jpg",
             'mobile': 7763342935,
@@ -249,7 +259,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['updated'], 1)
         self.assertTrue(data['products'])
 
-    # this method is gonna test for update a specific product that does not exists and response with 404
+    # this method is gonna test for update a specific product
+    # that does not exists and response with 404
 
     def test_patch_404_file_not_found_product(self):
         update_product = {
@@ -270,7 +281,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'File Not Found')
         self.assertEqual(data['error'], 404)
 
-    # this method is gonna test for update a specific product without an authorization header and response with 401
+    # this method is gonna test for update a specific product
+    # without an authorization header and response with 401
 
     def test_patch_401_authorization_header_missing_product(self):
         update_product = {
@@ -290,7 +302,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for delete a specific product and response with 200
+    # this method is gonna test for delete a specific product
+    # and response with 200
 
     def test_delete_product(self):
         res = self.client().delete('/products/2', headers={
@@ -301,7 +314,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertEqual(data['deleted'], 2)
 
-    # this method is gonna test for delete a specific product that does not exists and response with 404
+    # this method is gonna test for delete a specific product
+    # that does not exists and response with 404
 
     def test_delete_404_file_not_found_product(self):
         res = self.client().delete('/products/1000', headers={
@@ -313,7 +327,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'File Not Found')
         self.assertEqual(data['error'], 404)
 
-    # this method is gonna test for delete a specific product without an authorization header and response with 401
+    # this method is gonna test for delete a specific product
+    # without an authorization header and response with 401
 
     def test_delete_401_authorization_header_missing_product(self):
         res = self.client().delete('/products/1000')
@@ -324,7 +339,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for create an announcement (this works only with admin) and response with 200
+    # this method is gonna test for create an announcement
+    # (this works only with admin) and response with 200
 
     def test_post_announcement(self):
         new_announcement = {
@@ -338,8 +354,10 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['announcement'])
 
-    # this method is gonna test for create an announcement (this works only with admin)
-    # without give an announcement to add to database and response with 400
+    # this method is gonna test for create an announcement
+    # (this works only with admin)
+    # without give an announcement to add to database
+    # and response with 400
 
     def test_post_400_bad_request_announcement(self):
         new_announcement = {
@@ -354,7 +372,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'bad request')
         self.assertEqual(data['error'], 400)
 
-    # this method is gonna test for create an announcement (this works only with admin)
+    # this method is gonna test for create an announcement
+    # (this works only with admin)
     # without an authorization header and response with 401
 
     def test_post_401_authorization_header_missing_announcement(self):
@@ -369,7 +388,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for get a specific announcement (this works only with admin) and response with 200
+    # this method is gonna test for get a specific announcement
+    # (this works only with admin) and response with 200
 
     def test_get_specific_announcement(self):
         res = self.client().get('/announcement/1', headers={
@@ -380,7 +400,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertTrue(data['announcement'])
 
-    # this method is gonna test for get a specific announcement (this works only with admin)
+    # this method is gonna test for get a specific announcement
+    # (this works only with admin)
     # that does not exists and response with 404
 
     def test_get_404_file_not_found_announcement(self):
@@ -393,8 +414,10 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'File Not Found')
         self.assertEqual(data['error'], 404)
 
-    # this method is gonna test for get a specific announcement (this works only with admin)
-    # that does not have an authorization header and response with 401
+    # this method is gonna test for get a specific announcement
+    # (this works only with admin)
+    # that does not have an authorization header
+    # and response with 401
 
     def test_get_401_authorization_header_missing_announcement(self):
         res = self.client().get('/announcement/1')
@@ -405,7 +428,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for update a specific announcement (this works only with admin)
+    # this method is gonna test for update a specific announcement
+    # (this works only with admin)
     # and response with 200
 
     def test_patch_announcement(self):
@@ -420,7 +444,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertEqual(data['updated'], 1)
 
-    # this method is gonna test for update a specific announcement (this works only with admin)
+    # this method is gonna test for update a specific announcement
+    # (this works only with admin)
     # that does not have an authorization header and response with 401
 
     def test_patch_401_authorization_header_missing_announcement(self):
@@ -435,7 +460,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['error_number'], 401)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # this method is gonna test for update a specific announcement (this works only with admin)
+    # this method is gonna test for update a specific announcement
+    # (this works only with admin)
     # that does not exists and response with 404
 
     def test_patch_404_file_not_found_announcement(self):
@@ -451,7 +477,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'File Not Found')
         self.assertEqual(data['error'], 404)
 
-    # this method is gonna test for delete a specific announcement (this works only with admin)
+    # this method is gonna test for delete a specific announcement
+    # (this works only with admin)
     # and response with 200
 
     def test_delete_announcement(self):
@@ -463,7 +490,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], True)
         self.assertEqual(data['deleted'], 2)
 
-    # this method is gonna test for delete a specific announcement (this works only with admin)
+    # this method is gonna test for delete a specific announcement
+    # (this works only with admin)
     # that does not exists and response with 404
 
     def test_delete_404_file_not_found_announcement(self):
@@ -476,7 +504,8 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['message'], 'File Not Found')
         self.assertEqual(data['error'], 404)
 
-    # this method is gonna test for delete a specific announcement (this works only with admin)
+    # this method is gonna test for delete a specific announcement
+    # (this works only with admin)
     # that does not have an authorization header and response with 401
 
     def test_delete_401_authorization_header_missing_announcement(self):

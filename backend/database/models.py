@@ -17,7 +17,8 @@ pgPass = os.environ['PGPASSWORD']
 pgHost = os.environ['PGHOST']
 pgPort = os.environ['PGPORT']
 pgDatabase = os.environ['PGDATABASE']
-database_path = "postgres://{}:{}@{}:{}/{}".format(pgUser, pgPass, pgHost, pgPort, pgDatabase)
+database_path = "postgres://{}:{}@{}:{}/{}" \
+    .format(pgUser, pgPass, pgHost, pgPort, pgDatabase)
 
 db = SQLAlchemy()
 
@@ -27,7 +28,8 @@ def setup_db(app, database_path=database_path):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    # (3) if you are doing some tests you want to make sure uncomment the line below
+    # (3) if you are doing some tests
+    # you want to make sure uncomment the line below
     # db.drop_all()
     db.create_all()
 
@@ -36,9 +38,10 @@ def setup_db(app, database_path=database_path):
 
 
 class User(db.Model):
+    __tablename__ = 'users'
     id = Column(Integer(), primary_key=True)
     name = Column(String(20), unique=True, nullable=False)
-    products = db.relationship('Product', backref='user')
+    products = db.relationship('Product', backref='users')
 
     def __init__(self, name):
         self.name = name
@@ -63,6 +66,7 @@ class User(db.Model):
 
 
 class Product(db.Model):
+    __tablename__ = 'products'
     id = Column(Integer(), primary_key=True)
     title = Column(String(80), unique=True)
     description = Column(String(180), nullable=True)
@@ -70,12 +74,14 @@ class Product(db.Model):
     imageUrl = Column(String(250))
     public_id_image = Column(String(), nullable=False)
     imageName = Column(String())
-    created = Column(DateTime(), nullable=False, default=datetime.utcnow, onupdate=datetime.now)
+    created = Column(DateTime(), nullable=False,
+                     default=datetime.utcnow, onupdate=datetime.now)
     owner = Column(String())
     mobile = Column(BIGINT())
-    user_id = Column(Integer(), db.ForeignKey('user.id'))
+    user_id = Column(Integer(), db.ForeignKey('users.id'))
 
-    def __init__(self, title, description, price, imageUrl, public_id_image, imageName, owner, mobile, user):
+    def __init__(self, title, description, price, imageUrl,
+                 public_id_image, imageName, owner, mobile, user):
         self.title = title
         self.description = description
         self.price = price
@@ -130,6 +136,7 @@ class Product(db.Model):
 
 
 class Announcement(db.Model):
+    __tablename__ = 'Announcement'
     id = Column(Integer(), primary_key=True)
     announcement = Column(String())
 

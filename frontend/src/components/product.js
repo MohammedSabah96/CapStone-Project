@@ -149,7 +149,9 @@ const Product = (props) => {
                 }
             }
         )
-
+        setFileName("")
+        setPreviewSource("")
+        setDeleteImage("")
     }
     const OnUpdate = (event) => {
         setIsSubmit(true)

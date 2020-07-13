@@ -9,7 +9,7 @@ WORKDIR /app
 
 COPY . /app
 #for Production
-CMD ["gunicorn","-b","0.0.0.0:8080","app:APP","--timeout 90"]
-#CMD gunicorn --bind 0.0.0.0:$PORT wsgi
+#CMD ["gunicorn","-b","0.0.0.0:8080","app:APP","--timeout 90"]
+CMD gunicorn --bind 0.0.0.0:8080 wsgi --reload
 #for Development
 #ENTRYPOINT ["python","app.py"]

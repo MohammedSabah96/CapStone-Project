@@ -9,7 +9,9 @@ WORKDIR /app
 
 COPY . /app
 #for Production
-CMD ["gunicorn","-b","0.0.0.0:8080","app:APP"]
+EXPOSE 8080
+#CMD ["gunicorn","-b","0.0.0.0:8080","app:APP"]
 #CMD gunicorn --bind 0.0.0.0:8080 wsgi --reload
 #for Development
 #ENTRYPOINT ["python","app.py"]
+CMD gunicorn --bind 0.0.0.0:8080 app:APP

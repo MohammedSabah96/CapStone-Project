@@ -15,4 +15,4 @@ EXPOSE 8080
 #for Development
 #ENTRYPOINT ["python","app.py"]
 #CMD gunicorn --bind 0.0.0.0:8080 app:APP
-CMD gunicorn --worker-class gevent --workers 8 --bind 0.0.0.0:8000 wsgi:APP --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info
+CMD gunicorn --worker-class gevent --workers 8 --bind 0.0.0.0:8080 wsgi:APP --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info

@@ -1,0 +1,49 @@
+version: '3.7'
+services:
+  postgres:
+    image: "postgres:latest"
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend:/app
+    environment:
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
+      - AUTH0_DOMAIN=coffe-sho.auth0.com
+      - ALGORITHMS=['RS256']
+      - API_AUDIENCE=product
+      - CLOUD_NAME=devstore-capstone
+      - API_KEY=474371828699186
+      - API_SECRET=84V9Z0mM5zTNZt14fxMykFz3PUA
+      - DEBUG=True
+      - SERVER_NAME=18.158.75.204
+    depends_on:
+      - postgres
+    restart: always
+  client:
+    stdin_open: true
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ./frontend:/data/app
+      - /data/node_modules
+    restart: unless-stopped
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - api
+      - client
+    restart: always

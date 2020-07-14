@@ -1,11 +1,5 @@
 # Full Stack Products Shop Final Project (Capstone)
 `Note: You can sign up for new user and you will get role user after that you can take it from /profile`
-
-```
-For Admin user this is the User admin and Password
-user: admin@admin.com
-pass: gkmgkm123A
-```
 ## Introductions
 This project was made to practice how to implement a backend application, implementing endpoints for `GET,POST,PATCH,DELETE`
 most of the endpoint need an authorization, and of course it has a test file in which is tested each endpoint in success and failure state.
